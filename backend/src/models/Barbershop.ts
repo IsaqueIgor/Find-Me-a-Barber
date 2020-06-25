@@ -19,4 +19,4 @@ class Barbershop extends User {
   latitude: number;
 }
 
-export default User;
+export default Barbershop;
