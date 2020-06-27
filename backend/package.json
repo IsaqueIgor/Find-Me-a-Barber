@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --inspect --no-notify --transpileOnly --ignore-watch node_modules src/server.ts",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",

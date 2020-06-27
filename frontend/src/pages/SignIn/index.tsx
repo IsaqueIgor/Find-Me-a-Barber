@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Container, Content } from './styles';
+import { Container, Content, Background } from './styles';
 
 interface SingInFormData {
   email: string;
@@ -9,7 +9,10 @@ interface SingInFormData {
 const SignIn: React.FC = () => {
   return (
     <Container>
-      <Content>Sign In</Content>
+      <Content>
+        <h1>Login</h1>
+      </Content>
+      <Background />
     </Container>
   );
 };
