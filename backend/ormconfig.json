@@ -5,6 +5,7 @@
   "username": "postgres",
   "password": "123",
   "database": "fmab",
+  "autoLoadEntities": true,
   "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migration/*.ts"],
   "cli": {
