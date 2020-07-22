@@ -3,7 +3,7 @@ import { hash } from 'bcryptjs';
 
 import BarberShop from '../models/Barbershop';
 
-import AppError from '../errors/AppError';
+import AppError from '../shared/errors/AppError';
 
 interface Request {
   name: string;
