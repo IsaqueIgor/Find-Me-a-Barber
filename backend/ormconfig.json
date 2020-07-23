@@ -6,9 +6,10 @@
   "password": "123",
   "database": "fmab",
   "autoLoadEntities": true,
-  "entities": ["./src/models/*.ts"],
-  "migrations": ["./src/database/migration/*.ts"],
+  "useUnifiedTopology": true,
+  "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "cli": {
-    "migrationsDir": "./src/database/migrations"
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 }
