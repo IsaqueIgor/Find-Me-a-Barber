@@ -7,6 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { Container, Content, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 interface SignUpFormData {
   name: string;
@@ -33,17 +34,15 @@ const SignUp: React.FC = () => {
               name="password"
               icon={FiLock}
               type="password"
-              placeholder="Senha"
+              placeholder="password"
             />
 
-            <button type="submit">
-              <span>Submit</span>
-            </button>
+            <Button type="submit">Submit</Button>
           </Form>
 
           <Link to="/">
             <FiArrowLeft />
-            Voltar para logon
+            Back to Login Page
           </Link>
         </AnimationContainer>
       </Content>
