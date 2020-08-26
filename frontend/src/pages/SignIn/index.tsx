@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -7,6 +7,9 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { Container, Content, Background, AnimationContainer } from './styles';
 import Logo from '../../assets/Logo.png';
+
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -20,6 +23,10 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [loading, setLoading] = useState(false);
+
+  const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const history = useHistory();
 
@@ -30,8 +37,8 @@ const SignIn: React.FC = () => {
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required('E-mail Required')
-            .email('E-Mail invalid'),
+            .email('Enter a valid email')
+            .required('E-mail Required'),
           password: Yup.string().required('Password Required'),
         });
 
@@ -39,8 +46,19 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
+        setLoading(true);
+
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
+
+        setLoading(false);
+
         history.push('/dashboard');
       } catch (err) {
+        setLoading(false);
+
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -48,9 +66,15 @@ const SignIn: React.FC = () => {
 
           return;
         }
+
+        addToast({
+          type: 'error',
+          title: 'Invalid Credentials',
+          description: 'Something went wrong, Check your login and Passwords',
+        });
       }
     },
-    [history],
+    [signIn, addToast, history],
   );
 
   return (
